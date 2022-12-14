@@ -8,8 +8,6 @@ const UserSchema = new Schema(
     communitiesOwned: { type: [String], required: true },
     communitiesFollowed: { type: [String], required: true },
     admin: { type: Boolean },
-    // postIds: { type: [String], required: true },
-    // commentIds: { type: [String], required: true },
   },
   { timestamps: true }
 );

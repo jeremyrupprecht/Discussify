@@ -8,7 +8,6 @@ const PostSchema = new Schema(
     title: { type: String, required: true },
     body: { type: String, required: true },
     rating: { type: Number, required: true },
-    // commentIds: { type: [String], required: true },
   },
   { timestamps: true }
 );
