@@ -1,3 +1,5 @@
-The app runs through Glitch, to see a preview of the app, simply click the 
-"Preview" button in the middle of the lower bar (at the bottom of the screen)
-and click "Open Preview Plane"
+To execute the app, one should already have npm installed. To start type the commands:
+
+npm i
+npm i express         (if express was not already installed)
+npm i socket.io       (if socket.io was not already installed)
