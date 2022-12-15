@@ -47,12 +47,21 @@ socket.on("updatePosts", ({title, content, community, username}) => {
     
 })
 
+// Function to implement the search bar 
+// which filters out posts that are 
+// displayed on the main page based on post title
+// and body
+
 function filterFunc()
 {
+    
     var input, filter, prehs, hs, i, txtValue;
     input = document.getElementById("search");
     filter = input.value.toUpperCase();
     hs = document.getElementsByTagName("H1");
+ 
+    // loop to display posts based on post title and body
+  
     for (i = 0; i < hs.length; i++) {
         txtValue = hs[i].textContent || hs[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {

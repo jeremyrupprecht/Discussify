@@ -12,6 +12,8 @@ const users = []
 
 var currUser
 
+// User routes
+
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/index.html');
 })
@@ -80,8 +82,13 @@ app.get('/forgotpw.html', (req, res) => {
 })
 
 // when a client is connected
+
 io.on('connection', (socket) => 
 {
+    // upon successful user sign up encrpyt 
+    // password, add user to the userlist
+    // and tell the user they've signed up
+  
     socket.on('signup', async ({username, password}) => {
         const hashedPassword = await bcrypt.hash(password, 10)
         const user = {name: username, password: hashedPassword}
@@ -90,22 +97,26 @@ io.on('connection', (socket) =>
         console.log(users);
         io.emit("successfulSignUp", (username))
       
-        // Add user to database
-      
-        //const isCreateUserSuccess = await database.createUser(user);
-
-      
     })
+  
+    // upon user entering two differing passwords.
+    // tell the user they need to reconfirm their password
 
     socket.on("reconfirmPass", ({username}) => {
         io.emit("reconfirmYourPass", (username))
     })
+  
+    // upon user login 
 
     socket.on('login', async ({username, password,}) => {
       
 
+        // find the user's username
       
         const user = users.find(user => user.name == username) 
+        
+        // if it's not already in the server
+        
         if(user == null)
         {
             console.log("+++++++++++++++++++++++++")

@@ -67,8 +67,6 @@ socket.on("updatePosts", ({title, content, community, username}) => {
       commentButton.addEventListener("click", function() {
          commentPost(commentId,postId) 
       }); 
-      
-      // create post to display
     
       h1.appendChild(hText);
       p.appendChild(pText);
