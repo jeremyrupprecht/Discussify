@@ -72,25 +72,32 @@ socket.on("successfulSignUp", (id) => {
 
 function signupFunc()
 {
-    console.log(document.getElementById("suname").value);
-    console.log(document.getElementById("spsw").value);
-    console.log(document.getElementById("scpsw").value);
+  
+    // If user inputted password and confirmed password match
 
     if(document.getElementById("spsw").value === document.getElementById("scpsw").value)
     {
+        // Emit socket event to server signing the user up
+      
         socket.emit('signup', {username: document.getElementById("suname").value, password: document.getElementById("spsw").value})
         myID = document.getElementById("suname").value;
     }
     else
     {
+        // Otherwise tell user to reconfirm their password
+      
         console.log("Reconfirm password")
         socket.emit('reconfirmPass', {username: document.getElementById("suname").value})
         myID = document.getElementById("suname").value;
     }
 }
 
+// Function to log the user into the application
+
 function loginFunc()
 {
+    // emit socket event telling the server that this user is logging in
+  
     socket.emit('login', {username: document.getElementById("uname").value, password: document.getElementById("psw").value})
     myID = document.getElementById("uname").value; 
 }
