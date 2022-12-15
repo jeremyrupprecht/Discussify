@@ -1,4 +1,4 @@
-###Discussify
+Discussify
 A social discussion web application where users are able to create and publish posts to share with other users.
 
 ### Obtain Repository
