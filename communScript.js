@@ -10,27 +10,23 @@ let communName = temp[3];
 var userID = parts[1];
 
 
+
+// Grab username and community name to display custom user
+
 document.getElementById("sideBarUsername").innerHTML = userID;
 
-// grab username from database to display
-// ...
-
-console.log(communName);
 if (true) {
   currentCommunity = {
     id: communName,
   };
 }
-console.log("The community I'm in is " + currentCommunity.id);
-
-console.log(parts);
 
 document.getElementById('communityTitle').innerHTML = currentCommunity.id;
 
-// give posts a unique id, need to integrate with database
+// Post and Comment Id
 
-var postId = 0          // id needs to be saved with each post, also saved here should be the amount of likes a post gets (under rating)
-var commentId = 0       // id needs to be saved with each comment
+var postId = 0          
+var commentId = 0       
 
 socket.on("updatePosts", ({title, content, community, username}) => {
   if(community === currentCommunity.id)
