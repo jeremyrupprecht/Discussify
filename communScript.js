@@ -28,11 +28,12 @@ document.getElementById('communityTitle').innerHTML = currentCommunity.id;
 var postId = 0          
 var commentId = 0       
 
+// Socket event to update the displayed posts to the user 
+// (this is called once the user posts one of their posts)
+
 socket.on("updatePosts", ({title, content, community, username}) => {
   if(community === currentCommunity.id)
     {
-      
-      // save the username, title and content information in the database
       
       // create post to display
       
@@ -49,6 +50,9 @@ socket.on("updatePosts", ({title, content, community, username}) => {
       const p = document.createElement("p");
       const pText = document.createTextNode(content);
       
+      // add like and comment button event listeners
+      // (note the functionality for these is unfinished)
+      
       const likeButton = document.createElement("button");
       likeButton.innerHTML = "Like"
       likeButton.className = "likeButton"
@@ -63,6 +67,8 @@ socket.on("updatePosts", ({title, content, community, username}) => {
       commentButton.addEventListener("click", function() {
          commentPost(commentId,postId) 
       }); 
+      
+      // create post to display
     
       h1.appendChild(hText);
       p.appendChild(pText);
@@ -99,37 +105,46 @@ socket.on("updatePosts", ({title, content, community, username}) => {
     }
 })
 
+// Function to show the post creation pop-up
+
 function enablePost()
 {
   document.getElementById('modal-container-HTP').classList.add('show');
 }
+
+// Function to hide the post creation pop-up
 
 function closePosting()
 {
   document.getElementById('modal-container-HTP').classList.remove('show');
 }
 
+// Function to emit a socket event to notify the server that 
+// a user wants to make a post
+
 function postContent(title, content)
 {
   socket.emit("posted", ({title: title, content: content, community: currentCommunity.id, username: userID}));
 }
 
-// Access post from database
+// Function to like a post
+// note: the functionality for this function is unfinished
 
 function likePost(postId) {
-  console.log("liked! with id:" + postId)
   
   socket.emit("postLiked", ({postId: 0}))
   
 }
 
-// Access comment from database
+// Function to comment on a post
+// note: the functionality for this function is unfinished
 
 function commentPost(commentId, postID) {
     console.log("commented! with id: " + commentId + " on post!" + postID)
 }
 
-// Access post from database
+// Function to view a post
+// note: the functionality for this function is unfinished
 
 function viewPost(postId) {
   console.log("post viewed! with id:" + postId)

@@ -103,7 +103,7 @@ io.on('connection', (socket) =>
 
     socket.on('login', async ({username, password,}) => {
       
-        // Pull user from database
+
       
         const user = users.find(user => user.name == username) 
         if(user == null)

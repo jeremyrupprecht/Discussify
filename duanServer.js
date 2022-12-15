@@ -11,6 +11,20 @@ const Community = require("./schemas/Community");
 const Post = require("./schemas/Post");
 const Comment = require("./schemas/Comment");
 
+
+/*
+
+This is a separate server file containing 
+CRUD endpoints to connect the database to 
+the front end of the application
+
+This functionality was not completed, 
+thus this file not used in the current
+implementation of the application
+
+*/
+
+
 // This is for demo purposes, should be stored in .env file
 const SESSION_SECRET = "secret";
 

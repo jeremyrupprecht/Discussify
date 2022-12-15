@@ -1,11 +1,16 @@
 let socket = io()
 
-// Client Side JS
+
+// grab the signup message elements from the signup.html DOM 
 
 let alertMess = document.getElementById("alertMessage")
 let sAlertMess = document.getElementById("signUpAlertMessage")
 
 let myID
+
+// Socket event alerting the user
+// that their username is not 
+// contained within the database
 
 socket.on("usrNotFound", (id) => {
   if(id === myID)
@@ -15,12 +20,18 @@ socket.on("usrNotFound", (id) => {
     }
 })
 
+// Socket event to redirect to main page
+// upon successful login
+
 socket.on("succesfulLogin", (id) => {
   if(id == myID)
     {
       window.location.href = "mainPage.html" + "?" + id;
     }
 })
+
+// Socket event to alert the user
+// that hey have entered in their password wrong
 
 socket.on("NotAllowed", (id) => {
   if(id === myID)
@@ -29,6 +40,9 @@ socket.on("NotAllowed", (id) => {
       alertMess.style.color = "red"; 
     }
 })
+
+// Socket event to tell the user to 
+// reconfirm their password
 
 socket.on("reconfirmYourPass", (id) => {
   console.log("The id is " + id);
@@ -40,6 +54,9 @@ socket.on("reconfirmYourPass", (id) => {
     }
 })
 
+// Socket event to alret the user
+// their signup was successful
+
 socket.on("successfulSignUp", (id) => {
   if(id === myID)
     {
@@ -48,6 +65,10 @@ socket.on("successfulSignUp", (id) => {
       
     }
 })
+
+// Function to obtain signup information
+// from the user and sign them up into
+// the server
 
 function signupFunc()
 {
