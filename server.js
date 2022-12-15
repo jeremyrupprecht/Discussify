@@ -115,7 +115,8 @@ io.on('connection', (socket) =>
       
         const user = users.find(user => user.name == username) 
         
-        // if it's not already in the server
+        // if their username is not contained in the server 
+        // then tell the user
         
         if(user == null)
         {
@@ -123,6 +124,10 @@ io.on('connection', (socket) =>
             console.log('Cannot find user')
             io.emit('usrNotFound', (username))
         }
+      
+        // otherwise check user password and log them
+        // in if it's correct
+      
         else
         {
             if(await bcrypt.compare(password, user.password))
@@ -141,12 +146,18 @@ io.on('connection', (socket) =>
         }
     })
   
+  // Upon user creating a post, save the post details in the
+  // server and tell the user
+  // note: the functionality for this event is unfinished
+  
   socket.on("posted", ({title, content, community, username}) => {
-      
-    // Pull posts from database
     
     io.emit("updatePosts", ({title: title, content: content, community: community, username: username}));
   })
+  
+  // Upon user liking a post, update the 
+  // rating for that post and tell the user
+  // note: the functionality for this event is unfinished
   
   socket.on("postLiked", ({postId}) => {
     console.log("like received")
