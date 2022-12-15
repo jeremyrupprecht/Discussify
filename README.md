@@ -13,6 +13,7 @@ A social discussion web application where users are able to create and publish p
 3. npm i
 4. npm i express        (if express is already installed on your Visual Studio Code version)
 5. npm i socket.io      (if socket.io is already installed on your Visual Studio Code version)
+6. npm start
 
 ### Contributions
 Written by: </br>
